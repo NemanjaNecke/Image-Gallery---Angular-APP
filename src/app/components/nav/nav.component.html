@@ -1,0 +1,35 @@
+<ng-container *ngIf="checkLogged()">
+    <nav class="nav">
+        <ul class="nav nav-pills w-100 justify-content-between" [activeId]="route.fragment | async" ngbNav
+            #nav="ngbNav">
+            <div class="px-5">
+
+            </div>
+            <div class="d-flex">
+                <li [ngbNavItem]="link.fragment" class="nav-item" *ngFor="let link of links">
+                    <a class="nav-link" ariaCurrentWhenActive="page" routerLinkActive="active" ngbNavLink
+                        [routerLink]="link.fragment">
+                        {{link.title}}
+                    </a>
+
+                </li>
+            </div>
+            <div class="me-3 mt-1">
+            <li [ngbNavItem] ngbDropdown container="body" >
+                <button type="button" class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Hello
+                    {{login.showUsername().toUpperCase()}}</button>
+                <div ngbDropdownMenu>
+                    <button ngbDropdownItem routerLink="/profile">Profile</button>
+                    <button ngbDropdownItem routerLink="/changePassword">
+                        Change Password
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button ngbDropdownItem (click)="logout()">Logout</button>
+                </div>
+            </li>                
+            </div>
+
+        </ul>
+
+    </nav>
+</ng-container>

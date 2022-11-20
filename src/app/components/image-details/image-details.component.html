@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title mb-3">{{image.title}}</h4>
+    <button type="button" 
+    class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  </button>
+  </div>
+  <div class="modal-body text-center">
+    <img class="img-fluid" src="{{image.image}}" alt="{{image.alt}}">
+    
+    <h2>Description: {{image.alt}}</h2>
+   <div class="d-flex flex-row justify-content-center">
+    <div class="mr-5 d-flex flex-column justify-content-start">
+      <h2 class="">Categories: </h2> 
+    </div>
+    
+     <div class="d-flex flex-column justify-content-evenly pt-1 px-4">
+      <h3 *ngFor="let item of image.category" class="mb-0">
+      {{ matchCategory(item)}}
+      
+    </h3>
+   </div>
+    
+    </div>
+      <button class="w-50 btn btn-primary mt-3 mb-3" type="button" 
+      (click)="showUpdate()">
+       {{buttonName}}
+      </button>
+ 
+    <div class="collapse" [class.show]="show" id="updateDetails" >
+      <app-update-details (closeModal)="activeModal.close()" (writeSuccess)="open($event)"
+    [id]="image.id" [image]="image" [categories]="imageCategory"
+     (refreshPageEvent)="refreshPage()"></app-update-details>
+
+  </div>
+    </div>
+    
+  <div class="modal-footer">
+    <button class="btn btn-danger btn-outline-dark"
+    type="button" (click)="delete(image.id)">Delete Image</button>
+    <button type="button" class="btn btn-outline-dark"
+     (click)="activeModal.close('Close click')">Close</button>
+  </div>

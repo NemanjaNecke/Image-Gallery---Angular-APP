@@ -1,0 +1,110 @@
+<section class="bg-light" (click)="fakeAPIcall()">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="card card-style1 border-0">
+                    <div class="card-body p-5 p-sm-3 p-md-6 p-lg-7">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 mb-5 mb-lg-0">
+                                <img class="img-fluid w-75 h-75"
+                                    [src]="picShown.pic" alt="Profile Picture">
+                                <div class="input-group" *ngIf="edit">
+                                    <form [formGroup]="picForm">
+                                        <input type="file" class="form-control" (change)="onFileChange($event)"
+                                            id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+                                            aria-label="Upload" />
+                                    </form>
+
+                                    <button class="btn btn-outline-secondary" type="button" (click)="updateProfilePic()"
+                                        id="inputGroupFileAddon04">Upload</button>
+                                        <h5><button class="btn btn-outline-secondary"
+                                            (click)="choosePic()">
+                                            Or choose from already uploaded</button></h5>
+                                        
+                                </div>
+                            </div>
+                            <div class="col-lg-6 px-xl-10">
+                                <form action="" [formGroup]="form">
+                                    <div class="bg-dark d-flex w-100 pb-5 pt-3 mb-3 rounded flex-column">
+                                        <h3 class="h2 text-white mb-0 d-flex justify-content-between">
+                                            <span *ngIf="!edit">{{profile.user.username}}</span>
+                                            <ng-container *ngIf="edit">
+                                                <span class="ms-1 w-50">
+                                                    <input type="text" class="form-control" id="username"
+                                                        [placeholder]="profile.user.username"
+                                                        formControlName="username" />
+
+                                                </span>
+                                            </ng-container>
+                                            <span>
+                                                <i class="bi bi-pencil-square btn btn-dark btn-lg"
+                                                    (click)="makeEditable()"></i>
+                                            </span>
+                                        </h3>
+                                        <h4 class="text-info">{{accountType}} </h4>
+                                    </div>
+                                    <ul class="list-unstyled mb-2 ">
+                                        <li class="mb-2 mb-xl-3 d-flex align-items-end justify-content-start">
+                                            <span class="h4 d-flex align-items-end pt-3 me-2">First Name:</span>
+                                            <p class="h5 d-flex align-items-end me-2" *ngIf="!edit">
+                                                {{profile.user.first_name}}</p>
+
+                                            <ng-container *ngIf="edit"><span class="w-50">
+                                                    <input type="text" class="form-control" id="floatingInput"
+                                                        [placeholder]="profile.user.first_name"
+                                                        formControlName="firstName">
+
+                                                </span></ng-container>
+
+                                        </li>
+                                        <li class="mb-2 mb-xl-3 d-flex align-items-end justify-content-start">
+                                            <span class="h4 d-flex align-items-end pt-3 me-2">Last Name:</span>
+                                            <p class="h5 d-flex align-items-end me-2" *ngIf="!edit">
+                                                {{profile.user.last_name}}</p>
+                                            <ng-container *ngIf="edit"><span class="w-50">
+                                                    <input type="text" class="form-control" id="lastName"
+                                                        [placeholder]="profile.user.last_name"
+                                                        formControlName="lastName">
+
+                                                </span></ng-container>
+                                        </li>
+                                        <li class="mb-2 mb-xl-3 d-flex align-items-end justify-content-start">
+                                            <span class="h4 me-2 d-flex pt-3 align-items-end">Email:</span>
+                                            <p class="h5 d-flex align-items-end me-2" *ngIf="!edit">
+                                                {{profile.user.email}}</p>
+                                            <ng-container *ngIf="edit"><span class="w-50">
+                                                    <input type="email" class="form-control" id="email"
+                                                        [placeholder]="profile.user.email" formControlName="email">
+                                                </span>
+                                                <div *ngIf="form.get('email')!.invalid && (form.get('email')!.dirty || 
+                                    form.get('email')!.touched)" class="alert alert-danger">
+                                                    <div *ngIf="f['email'].errors!['email']">
+                                                        Please use valid email address!
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </li>
+
+                                    </ul>
+                                </form>
+
+                                <button *ngIf="edit" (click)="updateAcc()" [disabled]="!form.valid"
+                                    class="btn btn-primary">Update info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>User Uploaded images</h2>
+        <ng-container *ngIf="profile.user.author.length == 0">
+            <h4>No uploaded photos!</h4>
+            <h6>Upload your photo <a class="link" routerLink="/gallery">here</a></h6>
+        </ng-container>
+
+
+        <app-user-gallery [profile]="profile"></app-user-gallery>
+
+    </div>
+
+</section>

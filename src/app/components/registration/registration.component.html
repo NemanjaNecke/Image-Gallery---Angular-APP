@@ -1,0 +1,87 @@
+<div class="w-100 m-auto d-flex justify-content-center text-center">
+    <main class="w-50 m-auto my-5">
+        <h1 class="text-center mb-3">Sign Up</h1>
+        <form [formGroup]="form">
+            <div *ngFor = "let error of errors" >
+                <div *ngIf="errors.length > 0">
+                <ngb-alert 
+                [dismissible]="true" (closed)="close(error)"
+                 type="danger">
+                
+                 {{error}}
+               
+                    </ngb-alert>
+                </div>
+           
+         </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" 
+                placeholder="Your username"
+                formControlName="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div *ngIf="username!.invalid && (username!.dirty || username!.touched)"
+            class="alert alert-danger">
+                <div *ngIf="username!.errors?.['required']">
+                    Username is required.
+                </div>
+                <div *ngIf="username!.errors?.['minlength']">
+                    Username must be longer than 3 letters
+                </div>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control"
+                 id="email" placeholder="Email"
+                 formControlName="email">
+                <label for="floatingPassword">Email</label>
+            </div>
+            <div *ngIf="email!.invalid && (email!.dirty || email!.touched)"
+            class="alert alert-danger">
+            <div *ngIf="email!.errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="f['email'].errors!['email']">
+                Please use valid email address!
+            </div>
+          </div>
+            <div class="form-floating">
+                <input type="password" class="form-control"
+                 id="floatingPassword" placeholder="Password"
+                 formControlName="password1">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div *ngIf="password!.invalid && (password!.dirty || password!.touched)"
+            class="alert alert-danger">
+            <div *ngIf="password!.errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="f['password1'].errors!['minlength']">
+                Password must be longer than 8 characters
+            </div>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control"
+             id="floatingRepeatPassword" placeholder="Repeat Password"
+             formControlName="password2">
+            <label for="floatingRepeatPassword">Confirm Password</label>
+        </div>
+        <div *ngIf="confirmPassword!.invalid && (confirmPassword!.dirty || confirmPassword!.touched)"
+        class="alert alert-danger">
+        <div *ngIf="confirmPassword!.errors?.['required']">
+          Password is required.
+        </div>
+        <div *ngIf="f['password2'].errors!['minlength']">
+            Password must be longer than 8 characters
+        </div>
+      </div>
+            <button (click)="registration()" type="submit" 
+            class="w-100 mt-5 btn btn-primary mx-auto"
+            [disabled]="!form.valid">
+                Sign Up</button>
+          
+        </form> 
+        <button class="btn btn-primary mt-5" routerLink="/login">Back to Login Page</button> 
+    </main>
+   
+    
+</div>

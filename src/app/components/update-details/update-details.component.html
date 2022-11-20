@@ -1,0 +1,76 @@
+<form [formGroup]="fileForm" enctype="multipart/form-data" (ngsubmit)="onSubmit()" class="form-group mb-3 mx-auto">
+
+
+
+    <div class="input-group mb-3">
+        <label for="title" class="input-group-text">Title</label>
+        <input type="text" name="title" formControlName="title" class="form-control" [placeholder]="image.title"
+            aria-describedby="Title">
+    </div>
+    <div class="alert" *ngIf="fileForm.get('title')!.invalid && (isSubmitted ||
+         (fileForm.get('title')!.dirty || fileForm.get('title')!.touched))">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="fileForm.get('title')!.errors?.['required']">
+            Title required
+        </ngb-alert>
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="fileForm.get('title')!.errors?.['minlength']">
+            Title must be longer than 3 letters
+        </ngb-alert>
+    </div>
+    <div class="input-group mb-3">
+        <label for="categories" class="input-group-text">Categories</label>
+        <select formControlName="category" name="categories" class="form-select" placeholder="" placement="top"
+            ngbTooltip="Hold CTRL to select more categories" multiple aria-describedby="Category">
+            <option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+            </option>
+        </select>
+    </div>
+    <div class="alert" *ngIf="fileForm.get('category')!.invalid && (isSubmitted ||
+        (fileForm.get('category')!.dirty || fileForm.get('category')!.touched))">
+        <ngb-alert [dismissible]="false" type="danger" *ngIf="fileForm.get('category')!.errors?.['required'] ">
+            Category required
+        </ngb-alert>
+    </div>
+    <div class="input-group mb-3">
+        <label for="alt" class="input-group-text">Alt</label>
+        <input type="text" name="alt" formControlName="alt" class="form-control" [placeholder]="image.alt"
+            aria-describedby="Alt">
+    </div>
+    <div class="alert" *ngIf="fileForm.get('alt')!.invalid && (isSubmitted ||
+     (fileForm.get('alt')!.dirty || fileForm.get('alt')!.touched))">
+        <ngb-alert type="danger" [dismissible]="false" *ngIf="fileForm.get('alt')!.errors?.['required']">
+            Alt required
+        </ngb-alert>
+        <ngb-alert type="danger" [dismissible]="false" *ngIf="fileForm.get('alt')!.errors?.['minlength']">
+            Alt must be longer than 3 letters
+        </ngb-alert>
+    </div>
+    <div class="input-group mb-3">
+        <label for="author" class="input-group-text">Author</label>
+        <select name="author" id="author" formControlName="author" class="form-select" aria-describedby="Author">
+            <option [value]="creatorID" >{{creator}}</option>
+        </select>
+
+    </div>
+    <div class="input-group mb-3">
+        <label for="created" class="input-group-text">Created</label>
+        <input type="datetime-local" name="created" formControlName="created" class="form-control" placeholder=""
+            aria-describedby="created">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Status</label>
+        <select class="form-select" formControlName="status" id="inputGroupSelect01">
+            <option value="active" selected>Active</option>
+            <option value="deactivated">Deactivated</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+
+        <input type="file" class="form-control" (change)="onFileChange($event)">
+    </div>
+
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary mx-auto">
+        Update image information</button>
+
+</form>

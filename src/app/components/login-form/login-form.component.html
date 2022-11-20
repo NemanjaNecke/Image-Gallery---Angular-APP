@@ -1,0 +1,61 @@
+<div class="w-100 m-auto">
+    <main class="w-50 m-auto mt-5">
+        <h1 class="text-center mb-3">Login</h1>
+        <form [formGroup]="form">
+            <div *ngFor = "let error of errors" >
+                <div *ngIf="errors.length > 0">
+                <ngb-alert 
+                [dismissible]="true" (closed)="close(error)"
+                 type="danger">
+                
+                 {{error}}
+               
+                    </ngb-alert>
+                </div>
+           
+         </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" 
+                placeholder="Your username"
+                formControlName="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div *ngIf="username!.invalid && (username!.dirty || username!.touched)"
+            class="alert alert-danger">
+                <div *ngIf="username!.errors?.['required']">
+                    Username is required.
+                </div>
+                <div *ngIf="username!.errors?.['minlength']">
+                    Username must be longer than 3 letters
+                </div>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control"
+                 id="floatingPassword" placeholder="Password"
+                 formControlName="password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div *ngIf="password!.invalid && (password!.dirty || password!.touched)"
+            class="alert alert-danger">
+            <div *ngIf="password!.errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="f['password'].errors!['minlength']">
+                Password must be longer than 5 characters
+            </div>
+          </div>
+          
+            <button (click)="logIn()" type="submit" 
+            class="w-100 mt-5 btn btn-primary mx-auto"
+            [disabled]="!form.valid">
+                Login</button>
+          
+        </form> 
+
+        <section 
+        class="mt-5 d-flex justify-content-center flex-column align-items-center">
+           <h3> or </h3>
+           <button class="btn btn-primary w-100" [routerLink]="['/registration']">Sign Up</button>
+        </section> 
+    </main>  
+</div>

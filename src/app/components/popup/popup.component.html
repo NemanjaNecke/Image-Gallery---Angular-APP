@@ -1,0 +1,6 @@
+<div class="d-flex">
+     <ngb-alert class="w-100 h-100 m-0" [type]="checkOrigin()" [dismissible]="false">
+          <h3>{{message}} </h3>
+     </ngb-alert>
+     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">X</button>
+</div>

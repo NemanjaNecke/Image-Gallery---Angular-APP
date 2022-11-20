@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h3 class="modal-title">Choose the picture</h3>
+    <button type="button" 
+    class="btn-close" aria-label="Close" (click)="activeModal.close()">
+  </button>
+</div>
+<div class="modal-body">
+    <div class="row d-flex flex-wrap align-items-center">
+       <div class="col-3" *ngFor="let p of pic">
+   
+         <img  src="{{p.pic}}" alt="" class="img-fluid">   
+            <button 
+            class="btn btn-sm btn-outline-secondary"
+            (click)="delete(p.id)">Delete</button>
+            <button 
+            class="btn btn-sm btn-outline-secondary"
+            (click)="choosePic(p.id)">Set</button>
+    </div> 
+    </div>
+    
+</div>

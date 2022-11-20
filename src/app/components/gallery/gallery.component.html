@@ -1,0 +1,43 @@
+<div class="container-fluid" (click)="stayLogged()">
+    <app-choose (chooseCategory)="getImagesCategory($event)"
+    (selectAllCategories)="getImages()"
+    (refreshForCategories)="refreshPage()"></app-choose>
+    <div class="row justify-content-center align-items-center g-2"
+     >
+     <ngb-carousel *ngIf="imagesArray">
+        <ng-template class="" *ngFor="let item of imagesArray" ngbSlide>
+            <div class="d-flex flex-column align-items-center picsum-img-wrapper">
+                <h1 class="text-center" (click)="open(item)">{{item.title}}</h1>
+           <a (click)="open(item)" class="" role="button"
+           >
+      <img  src="{{ item.image }}" alt="{{item.alt}}" class="img-fluid">
+    </a> 
+            
+            </div>
+            
+        </ng-template>
+    </ngb-carousel>
+    
+    </div>
+    
+   
+    <div class="row justify-content-center align-items-center g-2">
+        <button (click)="showUpload()" class="btn btn-info w-50 mx-auto mt-5">
+            {{buttonName}}
+        </button>
+        <div class="mb-5">
+            <app-file-form *ngIf="show" id="scroll"
+            (refreshPageEvent)="refreshPage()"
+            (scroll)="document.getElementById('scroll')!.scrollIntoView({behavior: 'smooth'});"
+            >
+            </app-file-form>
+        </div>
+            
+
+         
+    </div>
+
+
+</div>
+<!-- [title]="item.title + ' details'"
+    [routerLink]="['/gallery/', item.id]" -->
