@@ -40,9 +40,11 @@ export class RefreshtokenInterceptor implements HttpInterceptor {
        if(!authservice.isAuthenticated()){
           return this.handleRefreshToken(request, next);}
         if (errordata.status === 401) {
-          console.log(`error ${errordata}`)
           // need to implement logout
           return this.handleRefreshToken(request, next);
+        }
+        if(errordata.status === 400){
+          return throwError(() => new Error(Object.entries(errordata.error).join('\n')))
         }
         return throwError(() => new Error(Object.entries(errordata.error).join('\n')));
       })
@@ -60,7 +62,7 @@ export class RefreshtokenInterceptor implements HttpInterceptor {
           return next.handle(this.AddTokenheader(request,data.access))
         }),
         catchError(errordata=>{
-          if(!request.url.includes('auth/registration/')){
+          if(!request.url.includes('auth/registration/') || !request.url.includes('auth/login/')){
             authservice.logout();
           }
            //Error: headers,status,statusText,url,ok,name,message,error

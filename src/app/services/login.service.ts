@@ -88,9 +88,8 @@ export class LoginService {
   }
 
   public logout() {
-    localStorage.removeItem('auth_tkn');
-    localStorage.removeItem('auth_meta');
 
+    localStorage.clear()
     this.token = new DecodedToken();
 
     return this.router.navigate(['/login'], { queryParams: { loggedOut: 'success' } });
