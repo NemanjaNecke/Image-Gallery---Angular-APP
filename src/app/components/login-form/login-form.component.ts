@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
 
   form: FormGroup;
 
-  errors: Error[] = [];
+  errors: any[] = [];
   usernName!: string;
 
 

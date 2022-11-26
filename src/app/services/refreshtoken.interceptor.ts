@@ -44,6 +44,7 @@ export class RefreshtokenInterceptor implements HttpInterceptor {
           return this.handleRefreshToken(request, next);
         }
         if(errordata.status === 400){
+          console.log('why do you send this request')
           return throwError(() => new Error(Object.entries(errordata.error).join('\n')))
         }
         return throwError(() => new Error(Object.entries(errordata.error).join('\n')));
@@ -57,7 +58,7 @@ export class RefreshtokenInterceptor implements HttpInterceptor {
       
       return authservice.postRefreshToken().pipe(
         switchMap((data: any) => {
-
+          
           authservice.updateData(data.access);
           return next.handle(this.AddTokenheader(request,data.access))
         }),

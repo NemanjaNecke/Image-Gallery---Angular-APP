@@ -1,5 +1,5 @@
 import { LoginPaths, environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { UserResponse, DecodedToken } from '../models/user.model';
@@ -34,7 +34,9 @@ export class LoginService {
   public ID!: string;
   // error messages received from the login attempt
   public errors: any = [];
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,
+    private handler: HttpBackend,) {
+      this.http = new HttpClient(handler)
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
