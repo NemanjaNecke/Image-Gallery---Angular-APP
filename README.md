@@ -1,5 +1,7 @@
 # ImageGallery
 Image Gallery project done in Angular with NgBootstrap UI. 
+Create an account with Register option and browse the app.
+Upload, update and delete images. Update and persoalize your profile.
 View Live Version at https://images-rest-app.web.app/
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3. 
 
