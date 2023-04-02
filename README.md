@@ -1,6 +1,7 @@
 # ImageGallery
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3. View Live Version at https://images-rest-app.web.app/
+Image Gallery project done in Angular with NgBootstrap UI. 
+View Live Version at https://images-rest-app.web.app/
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3. 
 
 ## Development server
 
