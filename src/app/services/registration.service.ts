@@ -1,7 +1,7 @@
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, shareReplay } from 'rxjs';
-import { environment, RegistrationPaths } from 'src/environments/environment';
+import { environment, RegistrationPaths } from 'src/environments/environment.prod';
 import { UserResponse } from '../models/user.model';
 import { LoginService } from './login.service';
 
