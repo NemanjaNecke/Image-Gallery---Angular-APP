@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs';
-import { ApiPaths, environment } from 'src/environments/environment';
+import { ApiPaths, environment } from 'src/environments/environment.prod';
 import { Profile, Profilepic, User } from '../models/user.model';
 import { LoginService } from './login.service';
 

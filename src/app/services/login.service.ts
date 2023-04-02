@@ -1,4 +1,4 @@
-import { LoginPaths, environment } from './../../environments/environment';
+import { LoginPaths, environment } from './../../environments/environment.prod';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, shareReplay } from 'rxjs/operators';

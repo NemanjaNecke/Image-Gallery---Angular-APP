@@ -22,7 +22,7 @@ export enum LoginPaths {
 }
 export const environment = {
   production: true,
-  baseUrl: 'https://nemanjacone.pythonanywhere.com/', 
+  baseUrl: 'https://conjevina.pythonanywhere.com/', 
   apiKey: 'c4af9c51-c99e-49ab-96e4-092c66e37a82',
   apipaths: ApiPaths,
   registrationpaths: RegistrationPaths,

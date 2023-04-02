@@ -1,5 +1,5 @@
 
-import { ApiPaths, environment } from './../../environments/environment';
+import { ApiPaths, environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category, Image } from '../models/imageModel';
